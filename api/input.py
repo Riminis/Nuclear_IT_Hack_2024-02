@@ -1,9 +1,5 @@
 import json
-import pandas as pd
-from geopy.distance import geodesic
 import psycopg2
-from flask import Flask, request, jsonify
-
 
 db_config = {
     'dbname': 'qablit79',
@@ -14,7 +10,7 @@ db_config = {
 }
 
 
-with open('../static/data.json', 'r', encoding='cp1251') as file:
+with open('../../Nuclear_IT_Hack-02/static/data.json', 'r', encoding='cp1251') as file:
     data = json.load(file)
 
 

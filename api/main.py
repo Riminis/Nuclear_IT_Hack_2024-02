@@ -1,10 +1,3 @@
-import json
-import pandas as pd
-from geopy.distance import geodesic
-import psycopg2
-from flask import Flask, request, jsonify
-
-
 def people_in_building(floors, square, type_building):
     people_new_building = -1
 
