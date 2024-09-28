@@ -1,6 +1,3 @@
-import json
-import psycopg2
-
 db_config = {
     'dbname': 'qablit79',
     'user': 'qablit79_user',
