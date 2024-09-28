@@ -4,12 +4,10 @@ from geopy.distance import geodesic
 import psycopg2
 from flask import Flask, request, jsonify
 
-from .main import people_in_building
-
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
+@app.route('/public', methods=['GET'])
 def handler():
 
     response = {
