@@ -1,9 +1,17 @@
-from main import *
+import json
+import pandas as pd
+from geopy.distance import geodesic
+import psycopg2
+from flask import Flask, request, jsonify
+import requests
 
-
-#with open('output.json', 'w') as file:
-#    json.dump(passenger_flow_metro, file, indent=4)
-
+db_config = {
+    'dbname': 'qablit79',
+    'user': 'qablit79_user',
+    'password': 'kPp7GjQFEJLEff1qPXuwOp4BwKPzkUmu',
+    'host': 'dpg-crg5qcjv2p9s73a8f8vg-a.oregon-postgres.render.com',
+    'port': '5432'
+}
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
@@ -25,10 +33,7 @@ def handle_post():
 
     my_location = (data["lng"], data["lst"])
 
-    people = people_in_building(test_floors, test_square, test_type_building)
-    nearest_station = find_nearest_station(my_location, metro_data)
-
-    return jsonify(passenger_flow_metro(people, coord_centre, nearest_station)), 200
+    return jsonify('0'), 200
 
 
 if __name__ == '__main__':
