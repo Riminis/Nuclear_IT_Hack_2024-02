@@ -4,18 +4,6 @@
     {
       "src": "app.py",
       "use": "@vercel/python"
-    },
-    {
-      "src": "main.py",
-      "use": "@vercel/python"
-    },
-    {
-      "src": "Input.py",
-      "use": "@vercel/python"
-    },
-    {
-      "src": "lyb.py",
-      "use": "@vercel/python"
     }
   ],
   "routes": [
