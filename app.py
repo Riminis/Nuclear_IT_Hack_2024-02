@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from numpy.array_api import square
 
 from main import *
 
@@ -18,13 +17,13 @@ def hand_1():
 
     my_location = answer['lng'], answer['lst']
 
-    square = answer['area']
+    squre = answer['area']
 
     type_building = answer['isResidential']
 
     print('Получены данные')
 
-    people = people_in_building(square, type_building)
+    people = people_in_building(squre, type_building)
     nearest_station = find_nearest_station(my_location, metro_data)
 
     response = {
