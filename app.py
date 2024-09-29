@@ -23,7 +23,7 @@ def hand_1():
 
     response = {
         "data_metro_flow": passenger_flow_metro(people, coord_centre, nearest_station),
-        "data_road": get_nearby_roads_capacity(my_location)
+        "data_road": get_nearby_roads_capacity(my_location, coord_centre)
     }
     return jsonify(response), 200
 

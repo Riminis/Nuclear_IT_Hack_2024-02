@@ -1,7 +1,5 @@
 from geopy.distance import geodesic
 import osmnx as ox
-import geopandas as gpd
-from shapely.geometry import Point
 from input import *
 
 
@@ -61,7 +59,8 @@ def find_nearest_station(my_location, metro_data):
     return nearest_station
 
 
-def get_nearby_roads_capacity(my_location, radius=500):
+def get_nearby_roads_capacity(my_location, coord_centre, radius=500):
+
     latitude = my_location[0]
     longitude = my_location[1]
     # Получаем граф дорог вокруг заданных координат
@@ -74,22 +73,44 @@ def get_nearby_roads_capacity(my_location, radius=500):
     road_capacities = []
     for _, row in roads.iterrows():
         # Получаем тип дороги
-        road_type = row.get('highway', None)
+        road_type = row.get('highway', 500)
         # Получаем пропускную способность из словаря или устанавливаем значение по умолчанию
-        capacity = road_capacity.get(road_type, None)
+        capacity = road_capacity.get(road_type, 500)
         name = row.get('name', 'Unnamed')  # Имя дороги
 
         # Извлекаем координаты дороги
         geometry = row.geometry
         coords = list(geometry.coords) if geometry is not None else []
 
-        road_capacities.append({
-            'name': name,
-            'type': road_type,
-            'capacity': capacity,
-            'length': row['length'],
-            'coordinates': coords
-        })
+        distance = geodesic(coord_centre, coords[len(coords) // 2]).kilometers
+
+        if distance < 2.5:
+            road_capacities.append({
+                'name': name,
+                'type': road_type,
+                'capacity_m': int(capacity * 0.4),
+                'capacity_e': int(capacity * 0.9),
+                'length': row['length'],
+                'coordinates': coords
+            })
+        elif distance < 6:
+            road_capacities.append({
+                'name': name,
+                'type': road_type,
+                'capacity_m': int(capacity * 0.5),
+                'capacity_e': int(capacity * 0.9),
+                'length': row['length'],
+                'coordinates': coords
+            })
+        else:
+            road_capacities.append({
+                'name': name,
+                'type': road_type,
+                'capacity_m': int(capacity * 0.75),
+                'capacity_e': int(capacity * 0.75),
+                'length': row['length'],
+                'coordinates': coords
+            })
 
     # Возвращаем результат в формате JSON
     return road_capacities
