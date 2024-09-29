@@ -3,15 +3,15 @@ import osmnx as ox
 from input import *
 
 
-def people_in_building(floors, square, type_building):
+def people_in_building(square, type_building):
     people_new_building = -1
 
     if type_building == 'economy':
-        people_new_building = floors * square / 25 * 0.57
+        people_new_building = square / 25 * 0.57
     elif type_building == 'office':
-        people_new_building = floors * square / 35 * 0.57
+        people_new_building = square / 35 * 0.57
     elif type_building == 'comfort':
-        people_new_building = floors * square / 45 * 0.57
+        people_new_building = square / 45 * 0.57
 
     return people_new_building
 

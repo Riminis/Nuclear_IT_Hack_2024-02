@@ -37,8 +37,7 @@ for row in data:
 types_building = ['economy', 'comfort', 'office']
 coord_centre = 55.752507, 37.623150
 
-test_floors = 9
-test_square = 1000
+test_square = 9000
 test_type_building = 'economy'
 
 cursor = None
