@@ -1,7 +1,6 @@
 import psycopg2
 import json
 
-
 db_config = {
     'dbname': 'qablit79',
     'user': 'qablit79_user',
@@ -20,7 +19,6 @@ data_metro_flow = []
 for row in data:
     if row['Year'] == 2024 and row['Quarter'] == 'I квартал':
         data_metro_flow.append([row['NameOfStation'], int(row['IncomingPassengers'] / 91), int(row['OutgoingPassengers'] / 91), row['Line']])
-
 
 types_building = ['economy', 'comfort', 'office']
 coord_centre = 55.752507, 37.623150

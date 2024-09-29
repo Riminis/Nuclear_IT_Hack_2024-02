@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 from main import *
 
-
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
@@ -17,13 +16,14 @@ def hand_1():
 
     my_location = location['lng'], location['lst']
 
-    print('Получены данные:', data)
+    print('Получены данные')
 
     people = people_in_building(test_floors, test_square, test_type_building)
     nearest_station = find_nearest_station(my_location, metro_data)
 
     response = {
-        "data": passenger_flow_metro(people, coord_centre, nearest_station)
+        "data_metro_flow": passenger_flow_metro(people, coord_centre, nearest_station),
+        "data_road": find_nearest_roads(my_location)
     }
     return jsonify(response), 200
 

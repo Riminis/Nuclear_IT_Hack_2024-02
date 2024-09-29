@@ -1,4 +1,7 @@
 from geopy.distance import geodesic
+import osmnx as ox
+import geopandas as gpd
+from shapely.geometry import Point
 from input import *
 
 
@@ -58,18 +61,35 @@ def find_nearest_station(my_location, metro_data):
     return nearest_station
 
 
-def find_nearest_road(my_location, road_data):
-#    min_distance = float('inf')
-    nearest_road = []
+def find_nearest_roads(my_location):
+    ox.config(use_cache=True, log_console=True)
 
-    for road in road_data:
-        road_location = (row[1], row[2])
-        distance = geodesic(my_location, road_location).kilometers
+    lat = my_location[0]
+    lon = my_location[1]
 
-#        if distance < min_distance:
-#            min_distance = distance
+    radius = 1000  # 1 км
 
-        if distance < 1.5:
-            nearest_road.append(row[0])
+    point = Point(lon, lat)
 
-    return nearest_road # TODO
+    gdf_point = gpd.GeoDataFrame([{'geometry': point}], crs="EPSG:4326")
+
+    gdf_point = gdf_point.to_crs(epsg=3857)
+
+    x, y = gdf_point.geometry.x.iloc[0], gdf_point.geometry.y.iloc[0]
+
+    G = ox.graph_from_point((lat, lon), dist=radius, network_type='drive')
+
+    edges = ox.graph_to_gdfs(G, nodes=False, edges=True)
+
+    edges = edges.to_crs(epsg=3857)
+
+    point_merc = Point(x, y)
+
+    edges['distance'] = edges.geometry.apply(lambda geom: geom.distance(point_merc))
+
+    geojson_data = edges.to_json()
+
+    # Если нужно, можно загрузить обратно в Python как словарь
+    nearest_roads = json.loads(geojson_data)
+
+    return nearest_roads # TODO
