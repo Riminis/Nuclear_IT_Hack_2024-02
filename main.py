@@ -6,11 +6,11 @@ from input import *
 def people_in_building(square, type_building):
     people_new_building = -1
 
-    if type_building == 'economy':
+    if type_building == 1:
         people_new_building = square / 25 * 0.57
-    elif type_building == 'office':
+    elif type_building == 2:
         people_new_building = square / 35 * 0.57
-    elif type_building == 'comfort':
+    elif type_building == 3:
         people_new_building = square / 45 * 0.57
 
     return people_new_building

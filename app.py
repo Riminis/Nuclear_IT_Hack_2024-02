@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify
+from numpy.array_api import square
+
 from main import *
 
 app = Flask(__name__)
@@ -10,15 +12,19 @@ def hand():
     }
     return jsonify(response), 200
 
-@app.route('/data_metro_flow', methods=['GET'])
+@app.route('/data_metro_flow', methods=['POST'])
 def hand_1():
-    location = request.get_json()
+    answer = request.get_json()
 
-    my_location = location['lng'], location['lst']
+    my_location = answer['lng'], answer['lst']
+
+    square = answer['area']
+
+    type_building = answer['isResidential']
 
     print('Получены данные')
 
-    people = people_in_building(test_square, test_type_building)
+    people = people_in_building(square, type_building)
     nearest_station = find_nearest_station(my_location, metro_data)
 
     response = {
