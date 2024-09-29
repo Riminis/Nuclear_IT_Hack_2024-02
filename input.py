@@ -24,7 +24,7 @@ road_capacity = {
     'service': 500,
 }
 
-with open('../static/data.json', 'r', encoding='cp1251') as file:
+with open('static/data.json', 'r', encoding='cp1251') as file:
     data = json.load(file)
 
 
