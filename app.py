@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from input import *
 
 app = Flask(__name__)
 
@@ -13,7 +12,7 @@ def hand():
 @app.route('/data_metro_flow', methods=['GET'])
 def hand():
     response = {
-        "data": data_metro_flow
+        "data": []
     }
     return jsonify(response), 200
 
