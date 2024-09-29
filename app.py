@@ -11,7 +11,7 @@ def hand():
     }
     return jsonify(response), 200
 
-@app.route('/data_metro_flow', methods=['POST'])
+@app.route('/data_metro_flow', methods=['GET'])
 def hand_1():
     answer = request.get_json()
 

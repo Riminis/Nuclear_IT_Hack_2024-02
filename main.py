@@ -90,8 +90,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=500):
             road_capacities.append({
                 'name': name,
                 'type': road_type,
-                'capacity_m': int(capacity * 0.4) + int(people * 0.3 / 1.2),
-                'capacity_e': int(capacity * 0.9) + int(people * 0.3 / 1.2),
+                'capacity_m': (int(capacity * 0.4) + int(people * 0.3 / 1.2)),
+                'capacity_e': (int(capacity * 0.9) + int(people * 0.3 / 1.2)),
                 'length': row['length'],
                 'coordinates': coords
             })
@@ -99,8 +99,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=500):
             road_capacities.append({
                 'name': name,
                 'type': road_type,
-                'capacity_m': int(capacity * 0.5) + int(people * 0.3 / 1.2),
-                'capacity_e': int(capacity * 0.9) + int(people * 0.3 / 1.2),
+                'capacity_m': (int(capacity * 0.5) + int(people * 0.3 / 1.2)),
+                'capacity_e': (int(capacity * 0.9) + int(people * 0.3 / 1.2)),
                 'length': row['length'],
                 'coordinates': coords
             })
@@ -108,8 +108,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=500):
             road_capacities.append({
                 'name': name,
                 'type': road_type,
-                'capacity_m': int(capacity * 0.75) + int(people * 0.3 / 1.2),
-                'capacity_e': int(capacity * 0.75) + int(people * 0.3 / 1.2),
+                'capacity_m': (int(capacity * 0.75) + int(people * 0.3 / 1.2)),
+                'capacity_e': (int(capacity * 0.75) + int(people * 0.3 / 1.2)),
                 'length': row['length'],
                 'coordinates': coords
             })
