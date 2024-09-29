@@ -31,16 +31,16 @@ def passenger_flow_metro(people_new_building, coord_centre, nearest_station):
                 coord_metro = row[1], row[2]
                 distance = geodesic(coord_centre, coord_metro).kilometers
                 if distance < 5:
-                    people_flow_out_m = 0.5 * ((0.5 * flow[2]) + people_new_building)
-                    people_flow_in_m = 0.5 * ((0.5 * flow[1]) + people_new_building)
+                    people_flow_out_m = 0.7 * 0.5 * ((0.5 * flow[2]) + people_new_building)
+                    people_flow_in_m = 0.7 * 0.5 * ((0.5 * flow[1]) + people_new_building)
 
-                    people_flow_out_e = 0.5 * ((0.5 * flow[2]) + people_new_building)
-                    people_flow_in_e = 0.5 * ((0.5 * flow[1]) + people_new_building)
+                    people_flow_out_e = 0.7 * 0.5 * ((0.5 * flow[2]) + people_new_building)
+                    people_flow_in_e = 0.7 * 0.5 * ((0.5 * flow[1]) + people_new_building)
                 else:
-                    people_flow_out_m = 0.2 * ((0.5 * flow[2]) + people_new_building)
-                    people_flow_in_m= 0.8 * ((0.5 * flow[1]) + people_new_building)
-                    people_flow_out_e = 0.8 * ((0.5 * flow[2]) + people_new_building)
-                    people_flow_in_e = 0.2 * ((0.5 * flow[1]) + people_new_building)
+                    people_flow_out_m = 0.7 * 0.2 * ((0.5 * flow[2]) + people_new_building)
+                    people_flow_in_m= 0.7 * 0.8 * ((0.5 * flow[1]) + people_new_building)
+                    people_flow_out_e = 0.7 * 0.8 * ((0.5 * flow[2]) + people_new_building)
+                    people_flow_in_e = 0.7 * 0.2 * ((0.5 * flow[1]) + people_new_building)
 
         flow_metro.append([row[0], row[3], int(people_flow_in_m), int(people_flow_out_m), int(people_flow_in_e), int(people_flow_out_e), row[1], row[2]])
 
@@ -59,7 +59,7 @@ def find_nearest_station(my_location, metro_data):
     return nearest_station
 
 
-def get_nearby_roads_capacity(my_location, coord_centre, radius=500):
+def get_nearby_roads_capacity(my_location, coord_centre, people, radius=500):
 
     latitude = my_location[0]
     longitude = my_location[1]
@@ -88,8 +88,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, radius=500):
             road_capacities.append({
                 'name': name,
                 'type': road_type,
-                'capacity_m': int(capacity * 0.4),
-                'capacity_e': int(capacity * 0.9),
+                'capacity_m': int(capacity * 0.4) + int(people * 0.3 / 1.2),
+                'capacity_e': int(capacity * 0.9) + int(people * 0.3 / 1.2),
                 'length': row['length'],
                 'coordinates': coords
             })
@@ -97,8 +97,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, radius=500):
             road_capacities.append({
                 'name': name,
                 'type': road_type,
-                'capacity_m': int(capacity * 0.5),
-                'capacity_e': int(capacity * 0.9),
+                'capacity_m': int(capacity * 0.5) + int(people * 0.3 / 1.2),
+                'capacity_e': int(capacity * 0.9) + int(people * 0.3 / 1.2),
                 'length': row['length'],
                 'coordinates': coords
             })
@@ -106,8 +106,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, radius=500):
             road_capacities.append({
                 'name': name,
                 'type': road_type,
-                'capacity_m': int(capacity * 0.75),
-                'capacity_e': int(capacity * 0.75),
+                'capacity_m': int(capacity * 0.75) + int(people * 0.3 / 1.2),
+                'capacity_e': int(capacity * 0.75) + int(people * 0.3 / 1.2),
                 'length': row['length'],
                 'coordinates': coords
             })
