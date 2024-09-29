@@ -1,5 +1,5 @@
 import psycopg2
-from flask import Flask, request, jsonify
+import json
 
 
 db_config = {
