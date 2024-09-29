@@ -1,8 +1,5 @@
-import json
-import pandas as pd
 from geopy.distance import geodesic
-import psycopg2
-from flask import Flask, request, jsonify
+from input import *
 
 
 def people_in_building(floors, square, type_building):
