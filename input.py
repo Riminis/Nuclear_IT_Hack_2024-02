@@ -23,7 +23,6 @@ for row in data:
 
 
 types_building = ['economy', 'comfort', 'office']
-my_location = (55.680458, 37.674418)
 coord_centre = 55.752507, 37.623150
 
 test_floors = 9

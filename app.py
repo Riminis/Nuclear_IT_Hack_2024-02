@@ -13,7 +13,10 @@ def hand():
 
 @app.route('/data_metro_flow', methods=['GET'])
 def hand_1():
-    data = request.get_json()
+    location = request.get_json()
+
+    my_location = location['lng'], location['lst']
+
     print('Получены данные:', data)
 
     people = people_in_building(test_floors, test_square, test_type_building)
