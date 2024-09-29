@@ -61,35 +61,35 @@ def find_nearest_station(my_location, metro_data):
     return nearest_station
 
 
-def find_nearest_roads(my_location):
-    ox.config(use_cache=True, log_console=True)
+def get_nearby_roads_capacity(my_location, radius=500):
+    latitude = my_location[0]
+    longitude = my_location[1]
+    # Получаем граф дорог вокруг заданных координат
+    G = ox.graph_from_point((latitude, longitude), dist=radius, network_type='drive')
 
-    lat = my_location[0]
-    lon = my_location[1]
+    # Получаем информацию о дорогах
+    roads = ox.graph_to_gdfs(G, nodes=False, edges=True)
 
-    radius = 1000  # 1 км
+    # Извлекаем пропускную способность и другую информацию
+    road_capacities = []
+    for _, row in roads.iterrows():
+        # Получаем тип дороги
+        road_type = row.get('highway', None)
+        # Получаем пропускную способность из словаря или устанавливаем значение по умолчанию
+        capacity = road_capacity.get(road_type, None)
+        name = row.get('name', 'Unnamed')  # Имя дороги
 
-    point = Point(lon, lat)
+        # Извлекаем координаты дороги
+        geometry = row.geometry
+        coords = list(geometry.coords) if geometry is not None else []
 
-    gdf_point = gpd.GeoDataFrame([{'geometry': point}], crs="EPSG:4326")
+        road_capacities.append({
+            'name': name,
+            'type': road_type,
+            'capacity': capacity,
+            'length': row['length'],
+            'coordinates': coords
+        })
 
-    gdf_point = gdf_point.to_crs(epsg=3857)
-
-    x, y = gdf_point.geometry.x.iloc[0], gdf_point.geometry.y.iloc[0]
-
-    G = ox.graph_from_point((lat, lon), dist=radius, network_type='drive')
-
-    edges = ox.graph_to_gdfs(G, nodes=False, edges=True)
-
-    edges = edges.to_crs(epsg=3857)
-
-    point_merc = Point(x, y)
-
-    edges['distance'] = edges.geometry.apply(lambda geom: geom.distance(point_merc))
-
-    geojson_data = edges.to_json()
-
-    # Если нужно, можно загрузить обратно в Python как словарь
-    nearest_roads = json.loads(geojson_data)
-
-    return nearest_roads # TODO
+    # Возвращаем результат в формате JSON
+    return road_capacities

@@ -9,6 +9,20 @@ db_config = {
     'port': '5432'
 }
 
+road_capacity = {
+    'motorway': 2000,
+    'motorway_link': 2000,
+    'trunk': 1800,
+    'trunk_link': 1800,
+    'primary': 1600,
+    'primary_link': 1600,
+    'secondary': 1400,
+    'secondary_link': 1400,
+    'tertiary': 1200,
+    'tertiary_link': 1200,
+    'residential': 1000,
+    'service': 500,
+}
 
 with open('static/data.json', 'r', encoding='cp1251') as file:
     data = json.load(file)
