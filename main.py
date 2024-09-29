@@ -60,16 +60,16 @@ def find_nearest_station(my_location, metro_data):
 
 def find_nearest_road(my_location, road_data):
 #    min_distance = float('inf')
-    nearest_station = []
+    nearest_road = []
 
-    for row in metro_data:
-        station_location = (row[1], row[2])
+    for road in road_data:
+        road_location = (row[1], row[2])
         distance = geodesic(my_location, road_location).kilometers
 
 #        if distance < min_distance:
 #            min_distance = distance
 
         if distance < 1.5:
-            nearest_station.append(row[0])
+            nearest_road.append(row[0])
 
-    return nearest_station # TODO
+    return nearest_road # TODO
