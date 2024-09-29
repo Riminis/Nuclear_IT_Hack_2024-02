@@ -11,12 +11,12 @@ def hand():
     }
     return jsonify(response), 200
 
-@app.route('/data_metro_flow', methods=['GET'])
-def hand():
-    response = {
-        "data": []
-    }
-    return jsonify(response), 200
+#@app.route('/data_metro_flow', methods=['GET'])
+#def hand():
+#    response = {
+#        "data": []
+#    }
+#    return jsonify(response), 200
 
 
 if __name__ == '__main__':
