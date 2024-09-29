@@ -1,6 +1,6 @@
 from geopy.distance import geodesic
 import osmnx as ox
-from input import *
+from api.input import *
 
 
 def people_in_building(floors, square, type_building):
