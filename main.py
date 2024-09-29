@@ -4,6 +4,8 @@ from input import *
 
 
 def people_in_building(square, type_building):
+    square = int(square)
+
     people_new_building = -1
 
     if type_building == 1:
