@@ -13,6 +13,9 @@ def hand():
 
 @app.route('/data_metro_flow', methods=['GET'])
 def hand_1():
+    data = request.get_json()
+    print('Получены данные:', data)
+
     people = people_in_building(test_floors, test_square, test_type_building)
     nearest_station = find_nearest_station(my_location, metro_data)
 
