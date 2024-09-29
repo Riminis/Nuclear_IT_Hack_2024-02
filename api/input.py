@@ -1,3 +1,7 @@
+import psycopg2
+from flask import Flask, request, jsonify
+
+
 db_config = {
     'dbname': 'qablit79',
     'user': 'qablit79_user',
@@ -35,8 +39,8 @@ try:
     cursor = connection.cursor()
 
     query = """
-     SELECT name, latitude, longitude, name_line
-     FROM metro;
+        SELECT name, latitude, longitude, name_line
+        FROM metro;
         """
 
     cursor.execute(query)
