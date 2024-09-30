@@ -15,7 +15,7 @@ def hand():
 def hand_1():
     answer = request.get_json()
 
-    my_location = answer['lng'], answer['lst']
+    my_location = answer['lng'], answer['lat']
 
     space = answer['area']
     space_office = answer['area_office']
