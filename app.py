@@ -17,13 +17,14 @@ def hand_1():
 
     my_location = answer['lng'], answer['lst']
 
-    squre = answer['area']
+    space = answer['area']
+    space_office = answer['area_office']
 
     type_building = answer['isResidential']
 
     print('Получены данные')
 
-    people = people_in_building(squre, type_building)
+    people = people_in_building(space, space_office, type_building)
     nearest_station = find_nearest_station(my_location, metro_data)
 
     response = {

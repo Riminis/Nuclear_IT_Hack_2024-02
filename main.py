@@ -3,17 +3,20 @@ import osmnx as ox
 from input import *
 
 
-def people_in_building(square, type_building):
-    square = int(square)
+def people_in_building(space, space_office, type_building):
+    space = int(space)
+    space_office = int(space_office)
 
     people_new_building = -1
 
     if type_building == 1:
-        people_new_building = square / 25 * 0.57
+        people_new_building = space / 25 * 0.57
     elif type_building == 2:
-        people_new_building = square / 35 * 0.57
+        people_new_building = space / 35 * 0.57
     elif type_building == 3:
-        people_new_building = square / 45 * 0.57
+        people_new_building = space / 45 * 0.57
+
+    people_new_building += int(space_office) / 35 * 0.57
 
     return people_new_building
 
