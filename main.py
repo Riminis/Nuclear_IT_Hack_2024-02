@@ -60,8 +60,8 @@ def passenger_flow_metro(people_new_building, coord_centre, nearest_station):
                     'people_flow_out_m': int(people_flow_out_m),
                     'people_flow_in_e': int(people_flow_in_e),
                     'people_flow_out_e': int(people_flow_out_e),
-                    'add_m': int(row[1] * (row[-1] / dis)),
-                    'add_e': int(row[2] * (row[-1] / dis)),
+                    'add_m': int(people_new_building * (row[-1] / dis)),
+                    'add_e': int(people_new_building * (row[-1] / dis)),
                     'lng': row[1],
                     'lst': row[2]
                 })
