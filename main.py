@@ -67,7 +67,7 @@ def find_nearest_station(my_location, metro_data):
     for metro in metro_data:
         station_location = (metro[1], metro[2])
         distance = geodesic(my_location, station_location).kilometers
-        if distance < 1:
+        if distance < 1.2:
             nearest_station.append(metro)
 
     return nearest_station
