@@ -47,7 +47,16 @@ def passenger_flow_metro(people_new_building, coord_centre, nearest_station):
                     people_flow_out_e = 0.7 * 0.8 * ((0.5 * flow[2]) + people_new_building)
                     people_flow_in_e = 0.7 * 0.2 * ((0.5 * flow[1]) + people_new_building)
 
-        flow_metro.append([row[0], row[3], int(people_flow_in_m), int(people_flow_out_m), int(people_flow_in_e), int(people_flow_out_e), row[1], row[2]])
+        flow_metro.append({
+            'name': row[0],
+            'Line': row[3],
+            'people_flow_in_m': int(people_flow_in_m),
+            'people_flow_out_m': int(people_flow_out_m),
+            'people_flow_in_e': int(people_flow_in_e),
+            'people_flow_out_e': int(people_flow_out_e),
+            'lng': row[1],
+            'lst': row[2]
+        })
 
     return flow_metro
 
