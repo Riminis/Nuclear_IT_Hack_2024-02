@@ -111,7 +111,7 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=750):
                 'capacity_e': (int(capacity * 0.89) + int(people * 0.3 / 1.2)),
                 'length': row['length'],
                 'coordinates': coords,
-                'point': capacity * 2 / ((int(capacity * 0.65) + int(people * 0.3 / 1.2)) + (int(capacity * 0.89) + int(people * 0.3 / 1.2)))
+                'point': ((int(capacity * 0.65) + int(people * 0.3 / 1.2)) + (int(capacity * 0.89) + int(people * 0.3 / 1.2))) / (capacity * 2)
             })
         elif distance < 6:
             road_capacities.append({
@@ -121,7 +121,7 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=750):
                 'capacity_e': (int(capacity * 0.8) + int(people * 0.3 / 1.2)),
                 'length': row['length'],
                 'coordinates': coords,
-                'point': capacity * 2 / ((int(capacity * 0.52) + int(people * 0.3 / 1.2)) + (int(capacity * 0.8) + int(people * 0.3 / 1.2)))
+                'point': ((int(capacity * 0.52) + int(people * 0.3 / 1.2)) + (int(capacity * 0.8) + int(people * 0.3 / 1.2))) / (capacity * 2)
             })
         else:
             road_capacities.append({
@@ -131,7 +131,7 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=750):
                 'capacity_e': (int(capacity * 0.7) + int(people * 0.3 / 1.2)),
                 'length': row['length'],
                 'coordinates': coords,
-                'point': capacity * 2 / ((int(capacity * 0.6) + int(people * 0.3 / 1.2)) + (int(capacity * 0.7) + int(people * 0.3 / 1.2)))
+                'point': ((int(capacity * 0.6) + int(people * 0.3 / 1.2)) + (int(capacity * 0.7) + int(people * 0.3 / 1.2))) / (capacity * 2)
             })
 
     # Возвращаем результат в формате JSON
