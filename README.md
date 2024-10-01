@@ -9,7 +9,7 @@
 
   - React
 
-  - Note.js
+  - Node.js
 
   - Express.js
 
