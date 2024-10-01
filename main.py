@@ -67,13 +67,13 @@ def find_nearest_station(my_location, metro_data):
     for metro in metro_data:
         station_location = (metro[1], metro[2])
         distance = geodesic(my_location, station_location).kilometers
-        if distance < 1.5:
+        if distance < 1:
             nearest_station.append(metro)
 
     return nearest_station
 
 
-def get_nearby_roads_capacity(my_location, coord_centre, people, radius=650):
+def get_nearby_roads_capacity(my_location, coord_centre, people, radius=600):
 
     latitude = my_location[0]
     longitude = my_location[1]
