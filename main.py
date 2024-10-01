@@ -43,26 +43,42 @@ def passenger_flow_metro(people_new_building, coord_centre, nearest_station):
                 coord_metro = row[1], row[2]
                 distance = geodesic(coord_centre, coord_metro).kilometers
                 if distance < 5:
-                    people_flow_out_m = (0.5 * flow[2]) + 0.7 * 0.5 * people_new_building * (row[-1] / dis)
-                    people_flow_in_m = (0.5 * flow[1]) + 0.7 * 0.5 * people_new_building * (row[-1] / dis)
-                    people_flow_out_e = (0.5 * flow[2]) +  0.7 * 0.5 * people_new_building * (row[-1] / dis)
-                    people_flow_in_e = (0.5 * flow[1]) + 0.7 * 0.5 * people_new_building * (row[-1] / dis)
+                    people_flow_out_m = (0.5 * flow[2]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
+                    people_flow_in_m = (0.5 * flow[1]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
+                    people_flow_out_e = (0.5 * flow[2]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
+                    people_flow_in_e = (0.5 * flow[1]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
                 else:
                     people_flow_out_m = (0.5 * flow[2]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
                     people_flow_in_m = (0.5 * flow[1]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
                     people_flow_out_e = (0.5 * flow[2]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
                     people_flow_in_e = (0.5 * flow[1]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
 
-        flow_metro.append({
-            'name': row[0],
-            'Line': row[3],
-            'people_flow_in_m': int(people_flow_in_m),
-            'people_flow_out_m': int(people_flow_out_m),
-            'people_flow_in_e': int(people_flow_in_e),
-            'people_flow_out_e': int(people_flow_out_e),
-            'lng': row[1],
-            'lst': row[2]
-        })
+                if distance < 5:
+                    flow_metro.append({
+                        'name': row[0],
+                        'Line': row[3],
+                        'people_flow_in_m': int(people_flow_in_m),
+                        'people_flow_out_m': int(people_flow_out_m),
+                        'people_flow_in_e': int(people_flow_in_e),
+                        'people_flow_out_e': int(people_flow_out_e),
+                        'add_m': int(0.7 * 0.8 * people_new_building * (row[-1] / dis)) + int(0.7 * 0.2 * people_new_building * (row[-1] / dis)),
+                        'add_e': int(0.7 * 0.2 * people_new_building * (row[-1] / dis)) + int(0.7 * 0.8 * people_new_building * (row[-1] / dis)),
+                        'lng': row[1],
+                        'lst': row[2]
+                    })
+                else:
+                    flow_metro.append({
+                        'name': row[0],
+                        'Line': row[3],
+                        'people_flow_in_m': int(people_flow_in_m),
+                        'people_flow_out_m': int(people_flow_out_m),
+                        'people_flow_in_e': int(people_flow_in_e),
+                        'people_flow_out_e': int(people_flow_out_e),
+                        'add_m': int(0.7 * 0.2 * people_new_building * (row[-1] / dis)) + int(0.7 * 0.8 * people_new_building * (row[-1] / dis)),
+                        'add_e': int(0.7 * 0.8 * people_new_building * (row[-1] / dis)) + int(0.7 * 0.2 * people_new_building * (row[-1] / dis)),
+                        'lng': row[1],
+                        'lst': row[2]
+                    })
 
     return flow_metro
 
