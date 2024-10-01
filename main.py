@@ -93,9 +93,7 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=750):
     # Извлекаем пропускную способность и другую информацию
     road_capacities = []
     for _, row in roads.iterrows():
-        # Получаем тип дороги
         road_type = row.get('highway', 500)
-        # Получаем пропускную способность из словаря или устанавливаем значение по умолчанию
         capacity = road_capacity.get(road_type, 500)
         name = row.get('name', 'Unnamed')  # Имя дороги
 
@@ -112,7 +110,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=750):
                 'capacity_m': (int(capacity * 0.65) + int(people * 0.3 / 1.2)),
                 'capacity_e': (int(capacity * 0.89) + int(people * 0.3 / 1.2)),
                 'length': row['length'],
-                'coordinates': coords
+                'coordinates': coords,
+                'point': capacity * 2 / ((int(capacity * 0.65) + int(people * 0.3 / 1.2)) + (int(capacity * 0.89) + int(people * 0.3 / 1.2)))
             })
         elif distance < 6:
             road_capacities.append({
@@ -121,7 +120,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=750):
                 'capacity_m': (int(capacity * 0.52) + int(people * 0.3 / 1.2)),
                 'capacity_e': (int(capacity * 0.8) + int(people * 0.3 / 1.2)),
                 'length': row['length'],
-                'coordinates': coords
+                'coordinates': coords,
+                'point': capacity * 2 / ((int(capacity * 0.52) + int(people * 0.3 / 1.2)) + (int(capacity * 0.8) + int(people * 0.3 / 1.2)))
             })
         else:
             road_capacities.append({
@@ -130,7 +130,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=750):
                 'capacity_m': (int(capacity * 0.6) + int(people * 0.3 / 1.2)),
                 'capacity_e': (int(capacity * 0.7) + int(people * 0.3 / 1.2)),
                 'length': row['length'],
-                'coordinates': coords
+                'coordinates': coords,
+                'point': capacity * 2 / ((int(capacity * 0.6) + int(people * 0.3 / 1.2)) + (int(capacity * 0.7) + int(people * 0.3 / 1.2)))
             })
 
     # Возвращаем результат в формате JSON
