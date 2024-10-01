@@ -73,7 +73,7 @@ def find_nearest_station(my_location, metro_data):
     return nearest_station
 
 
-def get_nearby_roads_capacity(my_location, coord_centre, people, radius=500):
+def get_nearby_roads_capacity(my_location, coord_centre, people, radius=650):
 
     latitude = my_location[0]
     longitude = my_location[1]
@@ -102,8 +102,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=500):
             road_capacities.append({
                 'name': name,
                 'type': road_type,
-                'capacity_m': (int(capacity * 0.4) + int(people * 0.3 / 1.2)),
-                'capacity_e': (int(capacity * 0.9) + int(people * 0.3 / 1.2)),
+                'capacity_m': (int(capacity * 0.65) + int(people * 0.3 / 1.2)),
+                'capacity_e': (int(capacity * 0.89) + int(people * 0.3 / 1.2)),
                 'length': row['length'],
                 'coordinates': coords
             })
@@ -111,8 +111,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=500):
             road_capacities.append({
                 'name': name,
                 'type': road_type,
-                'capacity_m': (int(capacity * 0.5) + int(people * 0.3 / 1.2)),
-                'capacity_e': (int(capacity * 0.9) + int(people * 0.3 / 1.2)),
+                'capacity_m': (int(capacity * 0.52) + int(people * 0.3 / 1.2)),
+                'capacity_e': (int(capacity * 0.8) + int(people * 0.3 / 1.2)),
                 'length': row['length'],
                 'coordinates': coords
             })
@@ -120,8 +120,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=500):
             road_capacities.append({
                 'name': name,
                 'type': road_type,
-                'capacity_m': (int(capacity * 0.75) + int(people * 0.3 / 1.2)),
-                'capacity_e': (int(capacity * 0.75) + int(people * 0.3 / 1.2)),
+                'capacity_m': (int(capacity * 0.6) + int(people * 0.3 / 1.2)),
+                'capacity_e': (int(capacity * 0.7) + int(people * 0.3 / 1.2)),
                 'length': row['length'],
                 'coordinates': coords
             })
