@@ -43,15 +43,15 @@ def passenger_flow_metro(people_new_building, coord_centre, nearest_station):
                 coord_metro = row[1], row[2]
                 distance = geodesic(coord_centre, coord_metro).kilometers
                 if distance < 5:
-                    people_flow_out_m = (0.8 * flow[2]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
-                    people_flow_in_m = (0.2 * flow[1]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
-                    people_flow_out_e = (0.2 * flow[2]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
-                    people_flow_in_e = (0.8 * flow[1]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
+                    people_flow_out_m = (0.2 * flow[2]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
+                    people_flow_in_m = (0.8 * flow[1]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
+                    people_flow_out_e = (0.8 * flow[2]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
+                    people_flow_in_e = (0.2 * flow[1]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
                 else:
-                    people_flow_out_m = (0.2 * flow[2]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
-                    people_flow_in_m = (0.8 * flow[1]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
-                    people_flow_out_e = (0.8 * flow[2]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
-                    people_flow_in_e = (0.2 * flow[1]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
+                    people_flow_out_m = (0.8 * flow[2]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
+                    people_flow_in_m = (0.2 * flow[1]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
+                    people_flow_out_e = (0.2 * flow[2]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
+                    people_flow_in_e = (0.8 * flow[1]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
 
                 if distance < 5:
                     flow_metro.append({
