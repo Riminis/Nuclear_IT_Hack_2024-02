@@ -30,6 +30,8 @@ def passenger_flow_metro(people_new_building, coord_centre, nearest_station):
 
     flow_metro = []
 
+
+
     for row in nearest_station:
         for flow in data_metro_flow:
             if row[0] == flow[0] and row[3][0] == flow[3][0]:
@@ -73,7 +75,7 @@ def find_nearest_station(my_location, metro_data):
     return nearest_station
 
 
-def get_nearby_roads_capacity(my_location, coord_centre, people, radius=600):
+def get_nearby_roads_capacity(my_location, coord_centre, people, radius=700):
 
     latitude = my_location[0]
     longitude = my_location[1]
