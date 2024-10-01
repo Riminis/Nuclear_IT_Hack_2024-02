@@ -109,6 +109,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=750):
                 'type': road_type,
                 'capacity_m': (int(capacity * 0.65) + int(people * 0.3 / 1.2)),
                 'capacity_e': (int(capacity * 0.89) + int(people * 0.3 / 1.2)),
+                'add_m': int(capacity * 0.65),
+                'add_e': int(capacity * 0.89),
                 'length': row['length'],
                 'coordinates': coords,
                 'point': ((int(capacity * 0.65) + int(people * 0.3 / 1.2)) + (int(capacity * 0.89) + int(people * 0.3 / 1.2))) / (capacity * 2)
@@ -119,6 +121,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=750):
                 'type': road_type,
                 'capacity_m': (int(capacity * 0.52) + int(people * 0.3 / 1.2)),
                 'capacity_e': (int(capacity * 0.8) + int(people * 0.3 / 1.2)),
+                'add_m': int(capacity * 0.52),
+                'add_e': int(capacity * 0.8),
                 'length': row['length'],
                 'coordinates': coords,
                 'point': ((int(capacity * 0.52) + int(people * 0.3 / 1.2)) + (int(capacity * 0.8) + int(people * 0.3 / 1.2))) / (capacity * 2)
@@ -129,6 +133,8 @@ def get_nearby_roads_capacity(my_location, coord_centre, people, radius=750):
                 'type': road_type,
                 'capacity_m': (int(capacity * 0.6) + int(people * 0.3 / 1.2)),
                 'capacity_e': (int(capacity * 0.7) + int(people * 0.3 / 1.2)),
+                'add_m': int(capacity * 0.6),
+                'add_e': int(capacity * 0.7),
                 'length': row['length'],
                 'coordinates': coords,
                 'point': ((int(capacity * 0.6) + int(people * 0.3 / 1.2)) + (int(capacity * 0.7) + int(people * 0.3 / 1.2))) / (capacity * 2)
