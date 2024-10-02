@@ -37,21 +37,24 @@ def passenger_flow_metro(people_new_building, coord_centre, nearest_station):
 
     nearest_station = sorted(nearest_station, key=lambda row: row[-1])
 
+    n = 0
+    
     for row in nearest_station:
         for flow in data_metro_flow:
             if row[0].lower() == flow[0].lower() and row[3][0].lower() == flow[3][0].lower():
+                n += 1
                 coord_metro = row[1], row[2]
                 distance = geodesic(coord_centre, coord_metro).kilometers
                 if distance < 5:
-                    people_flow_out_m = (0.8 * flow[2]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
-                    people_flow_in_m = (0.2 * flow[1]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
-                    people_flow_out_e = (0.2 * flow[2]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
-                    people_flow_in_e = (0.8 * flow[1]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
+                    people_flow_out_m = (0.8 * flow[2]) + 0.7 * 0.8 * people_new_building * (row[-1 * n] / dis)
+                    people_flow_in_m = (0.2 * flow[1]) + 0.7 * 0.2 * people_new_building * (row[-1 * n] / dis)
+                    people_flow_out_e = (0.2 * flow[2]) + 0.7 * 0.2 * people_new_building * (row[-1 * n] / dis)
+                    people_flow_in_e = (0.8 * flow[1]) + 0.7 * 0.8 * people_new_building * (row[-1 * n] / dis)
                 else:
-                    people_flow_out_m = (0.2 * flow[2]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
-                    people_flow_in_m = (0.8 * flow[1]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
-                    people_flow_out_e = (0.8 * flow[2]) + 0.7 * 0.8 * people_new_building * (row[-1] / dis)
-                    people_flow_in_e = (0.2 * flow[1]) + 0.7 * 0.2 * people_new_building * (row[-1] / dis)
+                    people_flow_out_m = (0.2 * flow[2]) + 0.7 * 0.2 * people_new_building * (row[-1 * n] / dis)
+                    people_flow_in_m = (0.8 * flow[1]) + 0.7 * 0.8 * people_new_building * (row[-1 * n] / dis)
+                    people_flow_out_e = (0.8 * flow[2]) + 0.7 * 0.8 * people_new_building * (row[-1 * n] / dis)
+                    people_flow_in_e = (0.2 * flow[1]) + 0.7 * 0.2 * people_new_building * (row[-1 * n] / dis)
                 print(row)
                 flow_metro.append({
                     'name': row[0],
@@ -60,8 +63,8 @@ def passenger_flow_metro(people_new_building, coord_centre, nearest_station):
                     'people_flow_out_m': int(people_flow_out_m),
                     'people_flow_in_e': int(people_flow_in_e),
                     'people_flow_out_e': int(people_flow_out_e),
-                    'add_m': int(people_new_building * (row[-1] / dis)),
-                    'add_e': int(people_new_building * (row[-1] / dis)),
+                    'add_m': int(people_new_building * (row[-1 * n] / dis)),
+                    'add_e': int(people_new_building * (row[-1 * n] / dis)),
                     'lng': row[1],
                     'lst': row[2]
                 })
